@@ -1,0 +1,50 @@
+<section class="panel" aria-labelledby="create-heading">
+  <h2 id="create-heading">Новая задача</h2>
+
+  <form
+    class="form"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    novalidate
+    [attr.aria-busy]="submitting()"
+  >
+    <div class="field">
+      <label for="task-title">Название</label>
+      <input
+        id="task-title"
+        type="text"
+        formControlName="title"
+        maxlength="100"
+        autocomplete="off"
+        [attr.aria-invalid]="titleError() ? true : null"
+        [attr.aria-describedby]="titleError() ? 'title-error' : null"
+      />
+      @if (titleError(); as message) {
+        <p id="title-error" class="field__error" role="alert">{{ message }}</p>
+      }
+    </div>
+
+    <div class="field">
+      <label for="task-description">
+        Описание <span class="optional">(необязательно)</span>
+      </label>
+      <textarea
+        id="task-description"
+        rows="3"
+        formControlName="description"
+      ></textarea>
+    </div>
+
+    @if (error(); as message) {
+      <p class="banner banner--error" role="alert">{{ message }}</p>
+    }
+
+    @if (success(); as message) {
+      <p class="banner banner--success" role="status">{{ message }}</p>
+    }
+
+    <button type="submit" class="btn btn--primary" [disabled]="submitting()">
+      {{ submitting() ? 'Создание…' : 'Создать задачу' }}
+    </button>
+  </form>
+</section>

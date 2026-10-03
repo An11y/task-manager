@@ -1,0 +1,62 @@
+@if (loading()) {
+  <p class="state" role="status" aria-live="polite">Загрузка задач…</p>
+} @else if (error()) {
+  <div class="state state--error" role="alert">
+    <p>{{ error() }}</p>
+    <button type="button" class="btn btn--secondary" (click)="retry.emit()">
+      Повторить
+    </button>
+  </div>
+} @else if (tasks().length === 0) {
+  <p class="state" role="status">{{ emptyMessage() }}</p>
+} @else {
+  <ul class="task-list" aria-label="Список задач">
+    @for (task of tasks(); track task.id) {
+      <li class="task-card">
+        <div class="task-card__main">
+          <h3>{{ task.title }}</h3>
+          @if (task.description) {
+            <p class="task-card__description">{{ task.description }}</p>
+          }
+          <dl class="task-card__meta">
+            <div>
+              <dt>Статус</dt>
+              <dd>
+                <span class="badge" [attr.data-status]="task.status">
+                  {{ statusLabel(task.status) }}
+                </span>
+              </dd>
+            </div>
+            <div>
+              <dt>Создана</dt>
+              <dd>
+                <time [attr.datetime]="task.createdAt">
+                  {{ formatDate(task.createdAt) }}
+                </time>
+              </dd>
+            </div>
+          </dl>
+
+          @if (statusError(task.id); as message) {
+            <p class="field__error" role="alert">{{ message }}</p>
+          }
+        </div>
+
+        @if (canAdvance(task)) {
+          <button
+            type="button"
+            class="btn btn--secondary"
+            [disabled]="isUpdating(task.id)"
+            (click)="advance.emit(task)"
+          >
+            @if (isUpdating(task.id)) {
+              Сохранение…
+            } @else {
+              {{ actionLabel(task) }}
+            }
+          </button>
+        }
+      </li>
+    }
+  </ul>
+}

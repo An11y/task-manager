@@ -1,0 +1,30 @@
+<div class="filters-block">
+  <div class="filters" role="group" aria-label="Фильтр по статусу">
+    @for (option of filterOptions; track option.value) {
+      <button
+        type="button"
+        class="chip"
+        [class.chip--active]="status() === option.value"
+        [attr.aria-pressed]="status() === option.value"
+        (click)="onStatusClick(option.value)"
+      >
+        {{ option.label }}
+      </button>
+    }
+  </div>
+
+  <div class="field">
+    <label for="task-search">Поиск по названию</label>
+    <input
+      id="task-search"
+      type="search"
+      [formControl]="searchControl"
+      placeholder="Начните вводить название…"
+      autocomplete="off"
+      aria-describedby="search-hint"
+    />
+    <p id="search-hint" class="field__hint">
+      Поиск учитывается вместе с фильтром по статусу
+    </p>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+.filters-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@media (max-width: 360px) {
+  .chip {
+    flex: 1 1 calc(50% - 0.25rem);
+  }
+}

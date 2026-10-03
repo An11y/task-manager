@@ -1,0 +1,35 @@
+<div class="page">
+  <header class="page__header">
+    <h1>Менеджер задач</h1>
+    <p class="page__subtitle">Список, фильтр, создание и смена статуса</p>
+  </header>
+
+  <app-task-form
+    [submitting]="creating()"
+    [error]="createError()"
+    [success]="createSuccess()"
+    (create)="onCreate($event)"
+  />
+
+  <section class="panel" aria-labelledby="list-heading">
+    <h2 id="list-heading">Задачи</h2>
+
+    <app-task-filters
+      [status]="statusFilter()"
+      [search]="searchQuery()"
+      (statusChange)="onStatusFilterChange($event)"
+      (searchChange)="onSearchChange($event)"
+    />
+
+    <app-task-list
+      [tasks]="tasks()"
+      [loading]="loading()"
+      [error]="listError()"
+      [emptyMessage]="emptyListMessage()"
+      [updatingIds]="updatingIds()"
+      [statusErrors]="statusErrors()"
+      (retry)="retryLoad()"
+      (advance)="onAdvanceStatus($event)"
+    />
+  </section>
+</div>

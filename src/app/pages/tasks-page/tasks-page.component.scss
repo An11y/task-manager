@@ -1,0 +1,28 @@
+.page {
+  max-width: 760px;
+  min-width: 0;
+  margin: 0 auto;
+  padding: 1.25rem 0.75rem 3rem;
+}
+
+.page__header {
+  margin-bottom: 1.5rem;
+}
+
+.page__header h1 {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.6rem, 4vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.page__subtitle {
+  margin: 0;
+  color: var(--muted);
+}
+
+@media (max-width: 360px) {
+  .page {
+    padding-inline: 0.65rem;
+  }
+}
