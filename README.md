@@ -7,7 +7,7 @@ Angular 19 SPA: список задач, фильтр по статусу, со�
 Node.js 22 LTS.
 
 ```bash
-git clone <url>
+git clone https://github.com/An11y/task-manager.git
 cd task-manager
 npm install
 ```
@@ -49,6 +49,10 @@ npm test
 ## Что дальше
 
 Покрыл бы e2e сценарии ошибки API и гонки фильтров. Страница задач всё ещё держит слишком много orchestration-логики.
+
+## Использование ИИ
+
+Использовал для черновиков. Логику и краевые случаи проверял сам: `npm run build`, `npm test`, ручной прогон с `npm run api` и `npm start`.
 
 ## Сколько времени заняло
 

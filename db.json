@@ -44,7 +44,7 @@
       "id": 7,
       "title": "Добавить unit-тесты",
       "description": "Покрыть сервис API и переходы статусов",
-      "status": "done",
+      "status": "new",
       "createdAt": "2026-10-01T12:00:00.000Z"
     },
     {
